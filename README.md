@@ -1,1 +1,1 @@
-# imdb_sql_analysis
+# CineInsight: Analyzing IMDb's Movie Database Through SQL
