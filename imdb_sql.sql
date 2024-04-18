@@ -1,3 +1,6 @@
+---------------------------------------- CineInsight: Analyzing IMDbs Movie_Database Through _SQL ---------------------------------------------------
+--------------------------------------------------- Project _by_ Subhadeep Das ----------------------------------------------------------------------
+
 -- create_schema
 create schema imdb;
 
@@ -47,3 +50,19 @@ select * from movies where release_date > '2010-01-01' order by revenue desc lim
 
 ------------------------------------------------------------------ JOINS ---------------------------------------------------------------------------
 
+-- Q6. Which movie(s) were directed by Brenda Chapman
+select title from movies join director on movies.director_id = director.id where director.name = 'Brenda Chapman';
+
+-- Q7. Give the title, release date, budget, revenue, populartity movies made by Steven Spielberg
+select title, release_date, budget, revenue, popularity from movies join director on movies.director_id = director.id
+where director.name = 'Steven Spielberg';
+
+------------------------------------------------------------- Revenue Analysis ---------------------------------------------------------------------
+-- Q8. Find the top 10 highest revenue making movies
+select title from movies order by revenue limit 10;
+
+-- Q9. Find the average budget and revenue for movies directed by female directors.
+select name, avg(budget), avg(revenue) from movies join director where director.gender = 'female' group by director.name;
+
+-- Q10. Calculate the month with the highest average revenue across all years
+select month(release_date), avg(revenue) from movies group by month(release_date) order by avg(revenue) desc limit 1;
